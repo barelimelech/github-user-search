@@ -1,26 +1,17 @@
-import { useEffect, useState } from 'react';
 import './App.css';
+import Search from './components/Search';
+import Results from './components/Results';
+import Container from './components/Container';
+import { SearchProvider } from './context/SearchContext';
 
 function App() {
-  const [beatles, setBeatles] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:3010/api/beatles', {
-      method: 'GET',
-    })
-      .then((response) => response.json())
-      .then(({ data }) => {
-        console.log(data);
-        setBeatles(data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
   return (
-    <ul>
-      {beatles.map(({ name }) => (
-        <li key={name}>{name}</li>
-      ))}
-    </ul>
+    <SearchProvider>
+      <Container>
+        <Search/>
+        <Results/>
+      </Container>
+    </SearchProvider>
   );
 }
 

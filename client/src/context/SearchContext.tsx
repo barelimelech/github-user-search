@@ -12,6 +12,8 @@ interface SearchContextProps {
   setPage: (page: number) => void;
   searchQuery: string;
   setSearchQuery: (searchQuery: string) => void;
+  errorMessage: string;
+  setErrorMessage: (message: string) => void;
 }
 
 const SearchContext = createContext<SearchContextProps | undefined>(undefined);
@@ -30,9 +32,11 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [totalCount, setTotalCount] = useState<number>(0);
   const [page, setPage] = useState<number>(1);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
 
   return (
-    <SearchContext.Provider value={{ users, setUsers, isLoading, setIsLoading, totalCount, setTotalCount, page, setPage, searchQuery, setSearchQuery }}>
+    <SearchContext.Provider value={{ users, setUsers, isLoading, setIsLoading, totalCount, setTotalCount, page, setPage, searchQuery, setSearchQuery, setErrorMessage, errorMessage }}>
       {children}
     </SearchContext.Provider>
   );

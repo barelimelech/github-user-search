@@ -5,7 +5,7 @@ import { useSearch } from '../context/SearchContext';
 import { handleSearch as fetchGitHubUsers } from '../utils/fetch';
 
 const Search = () => {
-    const { setUsers, setIsLoading, setTotalCount, page, setPage, searchQuery, setSearchQuery } = useSearch();
+    const { setUsers, setIsLoading, setTotalCount, page, setPage, searchQuery, setSearchQuery, setErrorMessage } = useSearch();
     const [currentSearchQuery, setCurrentSearchQuery] = useState<string>("");
     const [isSearchButtonClicked, setIsSearchButtonClicked] = useState<boolean>(false);
 
@@ -34,12 +34,22 @@ const Search = () => {
             return;
         }
         setIsLoading(true);
+        setErrorMessage("");
+        try {
+            const data = await fetchGitHubUsers(searchQuery, page, usersPerPage);
+            if (data.error) {
+                throw new Error(data.error);
+            }
+            setUsers(data.users);
+            setTotalCount(data.totalCount);
+            setIsLoading(false);
 
-        const data = await fetchGitHubUsers(searchQuery, page, usersPerPage);
-
-        setUsers(data.users);
-        setTotalCount(data.totalCount);
-        setIsLoading(false);
+        } catch (error) {
+            setErrorMessage("An error occurred while fetching GitHub users. Please try again.");
+            console.error("Error fetching GitHub users:", error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     useEffect(() => {

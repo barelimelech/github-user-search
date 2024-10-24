@@ -10,7 +10,7 @@ To get started with this project, follow these steps:
 [GitHub Token Instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
 2. create a .env file in /server folder with one attribute:
-     GITHUB_TOKEN=<your-token>
+     GITHUB_TOKEN=&lt;your-token&gt;
 
     *If no token is provided, mock data will be used by default.
 

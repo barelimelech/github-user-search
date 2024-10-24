@@ -7,14 +7,14 @@ To get started with this project, follow these steps:
 **Create Token**: 
 1. Create your own token in GitHub using the follwing instractions:
 
-`https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens`
+[GitHub Token Instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
 2. create a .env file in /server folder with one attribute:
      GITHUB_TOKEN=<your-token>
 
     *If no token is provided, mock data will be used by default.
 
-3. **Install Dependencies**: Run the following command to install the required packages:
+3. **Install Dependencies**: Run the following command to install the required packages from the root of the project:
 
 ```
 npm install
@@ -26,7 +26,7 @@ npm install
 npm start
 ```
 
-5. **Visit the Application**: Open your browser and go to `http://localhost:3000/` to use the application.
+5. **Visit the Application**: Open your browser and go to [http://localhost:3000/](http://localhost:3000/) to use the application.
 
 
 
